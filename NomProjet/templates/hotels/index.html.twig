@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hotels index{% endblock %}
+
+{% block body %}
+    <h1>Hotels index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>LibelleHotel</th>
+                <th>Adresse</th>
+                <th>CodePostal</th>
+                <th>Ville</th>
+                <th>CategorieHotel</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for hotel in hotels %}
+            <tr>
+                <td>{{ hotel.id }}</td>
+                <td>{{ hotel.LibelleHotel }}</td>
+                <td>{{ hotel.Adresse }}</td>
+                <td>{{ hotel.CodePostal }}</td>
+                <td>{{ hotel.Ville }}</td>
+                <td>{{ hotel.CategorieHotel }}</td>
+                <td>
+                    <a href="{{ path('hotels_show', {'id': hotel.id}) }}">show</a>
+                    <a href="{{ path('hotels_edit', {'id': hotel.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('hotels_new') }}">Create new</a>
+{% endblock %}
